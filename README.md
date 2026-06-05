@@ -18,3 +18,4 @@ npm run dev
 ## Deploy
 
 Conecte este repositorio/pasta na Vercel e configure as variaveis acima.
+"# Neto-store" 
