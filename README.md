@@ -14,6 +14,8 @@ npm run dev
 
 - `NEXT_PUBLIC_ERP_API_URL`: endpoint publico do ERP. Exemplo: `https://erp-netorodas.online/api/public/products`
 - `NEXT_PUBLIC_WHATSAPP_NUMBER`: WhatsApp com codigo do pais e DDD. Exemplo: `5575991665469`
+- `OPENAI_API_KEY`: chave da OpenAI usada no endpoint server-side de visualizacao de rodas.
+- `OPENAI_IMAGE_MODEL`: modelo de imagem. Padrao: `gpt-image-1`.
 
 ## Deploy
 

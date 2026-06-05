@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatMoney, productMeasure, StoreProduct, whatsappLink } from "@/lib/products";
+import { VisualizeWheelButton } from "@/components/VisualizeWheelButton";
 
 export function ProductCard({ product, index }: { product: StoreProduct; index: number }) {
   return (
@@ -62,6 +63,7 @@ export function ProductCard({ product, index }: { product: StoreProduct; index: 
         >
           Comprar pelo WhatsApp
         </Link>
+        {product.category === "roda" ? <VisualizeWheelButton product={product} /> : null}
       </div>
     </article>
   );
