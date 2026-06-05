@@ -1,6 +1,7 @@
 import { ProductCard } from "@/components/ProductCard";
 import { StoreFilters } from "@/components/StoreFilters";
 import { getProducts } from "@/lib/products";
+import Link from "next/link";
 
 type PageProps = {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
@@ -29,7 +30,15 @@ export default async function Home({ searchParams }: PageProps) {
             <div className="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[color:var(--brand)] opacity-30 blur-3xl" />
             <div className="absolute -bottom-28 left-1/3 h-72 w-72 rounded-full bg-[color:var(--olive)] opacity-30 blur-3xl" />
             <div className="relative">
-              <p className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-orange-200">Neto Rodas Online</p>
+              <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <p className="text-xs font-black uppercase tracking-[0.3em] text-orange-200">Neto Rodas Online</p>
+                <Link
+                  href="/login"
+                  className="w-fit rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] text-white transition hover:bg-white/20"
+                >
+                  Área do cliente
+                </Link>
+              </div>
               <h1 className="display-font max-w-4xl text-5xl font-black leading-[0.95] sm:text-6xl lg:text-7xl">
                 Pneus e rodas com estoque real da loja.
               </h1>
