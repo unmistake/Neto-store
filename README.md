@@ -17,6 +17,7 @@ npm run dev
 - `ERP_API_BASE_URL`: endpoint protegido do ERP. Exemplo: `https://erp-netorodas.online/api`
 - `ERP_API_TOKEN`: token da API do ERP, usado somente no servidor da loja para validar login de clientes.
 - `CUSTOMER_SESSION_SECRET`: segredo forte para assinar o cookie da area do cliente.
+- `IP_GEOLOCATION_API_URL`: endpoint opcional para detectar cidade/UF pelo IP. Use `{ip}` como placeholder. Padrao: `https://ipwho.is/{ip}`.
 - `OPENAI_API_KEY`: chave da OpenAI usada no endpoint server-side de visualizacao de rodas.
 - `OPENAI_IMAGE_MODEL`: modelo de imagem. Padrao: `gpt-image-1`.
 
