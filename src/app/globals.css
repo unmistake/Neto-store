@@ -1,0 +1,63 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+:root {
+  --ink: #172019;
+  --muted: #657063;
+  --paper: #f6f1e8;
+  --card: #fffaf0;
+  --line: #ded3bf;
+  --brand: #da3c1f;
+  --brand-dark: #8d1f12;
+  --olive: #657a3f;
+  --night: #111711;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(218, 60, 31, 0.16), transparent 28rem),
+    radial-gradient(circle at 88% 12%, rgba(101, 122, 63, 0.18), transparent 24rem),
+    linear-gradient(135deg, #f8f0df 0%, #ebe0cb 52%, #fbf7ee 100%);
+  font-family: "Manrope", sans-serif;
+}
+
+h1, h2, h3, .display-font {
+  font-family: "Bricolage Grotesque", sans-serif;
+}
+
+::selection {
+  background: var(--brand);
+  color: white;
+}
+
+.texture {
+  background-image:
+    linear-gradient(rgba(23, 32, 25, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(23, 32, 25, 0.035) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.card-shadow {
+  box-shadow: 0 24px 60px rgba(52, 43, 29, 0.14);
+}
+
+.reveal {
+  animation: reveal 0.65s ease both;
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
