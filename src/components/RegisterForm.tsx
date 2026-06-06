@@ -55,7 +55,6 @@ export function RegisterForm() {
     last_name: "",
     phone: "",
     tax_id: "",
-    notes: "",
     address_street: "",
     address_number: "",
     address_district: "",
@@ -280,17 +279,6 @@ export function RegisterForm() {
           </div>
         </div>
       </div>
-
-      <label className="block">
-        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Observacoes</span>
-        <textarea
-          value={form.notes}
-          onChange={(event) => updateField("notes", event.target.value)}
-          rows={3}
-          placeholder="Ex.: preferencia de contato, interesse em rodas, medidas que procura..."
-          className="mt-2 w-full resize-none rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
-        />
-      </label>
 
       {error ? (
         <div className="rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-bold text-red-800">

@@ -46,7 +46,6 @@ export async function POST(request: Request) {
       last_name: lastName,
       phone,
       tax_id: taxId,
-      notes: String(body?.notes || "").trim(),
       address_street: String(body?.address_street || "").trim(),
       address_number: String(body?.address_number || "").trim(),
       address_district: String(body?.address_district || "").trim(),
