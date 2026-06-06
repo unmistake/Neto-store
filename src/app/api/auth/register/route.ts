@@ -23,11 +23,16 @@ export async function POST(request: Request) {
 
   const firstName = String(body?.first_name || "").trim();
   const lastName = String(body?.last_name || "").trim();
+  const email = String(body?.email || "").trim();
+  const password = String(body?.password || "");
   const phone = String(body?.phone || "").trim();
   const taxId = String(body?.tax_id || "").trim();
 
-  if (!firstName || !lastName || !phone || !taxId) {
-    return NextResponse.json({ ok: false, error: "Informe nome, sobrenome, telefone e CPF/CNPJ." }, { status: 422 });
+  if (!firstName || !lastName || !email || !password || !phone || !taxId) {
+    return NextResponse.json({ ok: false, error: "Informe nome, sobrenome, e-mail, senha, telefone e CPF/CNPJ." }, { status: 422 });
+  }
+  if (password.length < 6) {
+    return NextResponse.json({ ok: false, error: "A senha deve ter pelo menos 6 caracteres." }, { status: 422 });
   }
 
   const location = await resolveIpLocation(request);
@@ -44,6 +49,8 @@ export async function POST(request: Request) {
     body: JSON.stringify({
       first_name: firstName,
       last_name: lastName,
+      email,
+      password,
       phone,
       tax_id: taxId,
       address_street: String(body?.address_street || "").trim(),

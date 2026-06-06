@@ -21,14 +21,14 @@ export default async function LoginPage() {
             Neto Rodas Online
           </Link>
           <h1 className="display-font mt-12 text-5xl font-black leading-none sm:text-6xl">
-            Área do cliente, sem complicação.
+            Area do cliente, sem complicacao.
           </h1>
           <p className="mt-6 text-lg text-stone-200">
-            Entre com os dados cadastrados no ERP para acessar sua conta e acompanhar os próximos recursos da loja.
+            Entre com e-mail ou CPF/CNPJ e senha para acessar sua conta e acompanhar os proximos recursos da loja.
           </p>
           <div className="mt-10 rounded-[2rem] border border-white/15 bg-white/10 p-5">
             <p className="text-sm font-bold text-stone-200">
-              Por segurança, validamos CPF/CNPJ e telefone juntos. Se algum dado estiver diferente do cadastro, fale com a equipe pelo WhatsApp.
+              Por seguranca, a area do cliente agora usa senha. Se voce ainda nao criou uma senha, use a pagina de cadastro.
             </p>
           </div>
         </aside>
@@ -37,11 +37,11 @@ export default async function LoginPage() {
           <p className="text-xs font-black uppercase tracking-[0.24em] text-[color:var(--brand)]">Entrar</p>
           <h2 className="display-font mt-3 text-4xl font-black">Acesse sua conta</h2>
           <p className="mb-8 mt-3 text-[color:var(--muted)]">
-            Use o CPF/CNPJ e telefone que estão cadastrados no CRM da Neto Rodas.
+            Use seu e-mail ou CPF/CNPJ junto com a senha cadastrada.
           </p>
           <LoginForm />
           <p className="mt-6 text-center text-sm font-semibold text-[color:var(--muted)]">
-            Ainda não tem cadastro?{" "}
+            Ainda nao tem cadastro?{" "}
             <Link href="/criar-conta" className="font-black text-[color:var(--brand)]">
               Criar conta agora
             </Link>
@@ -52,4 +52,3 @@ export default async function LoginPage() {
     </main>
   );
 }
-

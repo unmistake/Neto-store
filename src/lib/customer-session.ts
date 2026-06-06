@@ -7,6 +7,7 @@ export type CustomerSession = {
   id: number;
   first_name: string;
   last_name: string;
+  email?: string | null;
   full_name: string;
   phone_masked: string;
   tax_id_masked: string;

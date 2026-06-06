@@ -53,6 +53,9 @@ export function RegisterForm() {
   const [form, setForm] = useState({
     first_name: "",
     last_name: "",
+    email: "",
+    password: "",
+    password_confirm: "",
     phone: "",
     tax_id: "",
     address_street: "",
@@ -119,6 +122,16 @@ export function RegisterForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+
+    if (form.password.length < 6) {
+      setError("A senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+    if (form.password !== form.password_confirm) {
+      setError("A confirmacao da senha nao confere.");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -163,6 +176,49 @@ export function RegisterForm() {
             value={form.last_name}
             onChange={(event) => updateField("last_name", event.target.value)}
             autoComplete="family-name"
+            className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
+            required
+          />
+        </label>
+      </div>
+
+      <label className="block">
+        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">E-mail</span>
+        <input
+          type="email"
+          value={form.email}
+          onChange={(event) => updateField("email", event.target.value)}
+          autoComplete="email"
+          placeholder="cliente@email.com"
+          className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
+          required
+        />
+      </label>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Senha</span>
+          <input
+            type="password"
+            value={form.password}
+            onChange={(event) => updateField("password", event.target.value)}
+            autoComplete="new-password"
+            minLength={6}
+            placeholder="Minimo 6 caracteres"
+            className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
+            required
+          />
+        </label>
+
+        <label className="block">
+          <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Confirmar senha</span>
+          <input
+            type="password"
+            value={form.password_confirm}
+            onChange={(event) => updateField("password_confirm", event.target.value)}
+            autoComplete="new-password"
+            minLength={6}
+            placeholder="Repita a senha"
             className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
             required
           />

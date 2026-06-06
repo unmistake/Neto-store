@@ -46,6 +46,12 @@ export default async function MinhaContaPage() {
                 <dt className="font-black uppercase tracking-[0.16em] text-[color:var(--muted)]">Telefone</dt>
                 <dd className="mt-1 text-lg font-extrabold">{customer.phone_masked}</dd>
               </div>
+              {customer.email ? (
+                <div className="rounded-2xl bg-white/70 p-4">
+                  <dt className="font-black uppercase tracking-[0.16em] text-[color:var(--muted)]">E-mail</dt>
+                  <dd className="mt-1 break-words text-lg font-extrabold">{customer.email}</dd>
+                </div>
+              ) : null}
               {customer.car ? (
                 <div className="rounded-2xl bg-white/70 p-4">
                   <dt className="font-black uppercase tracking-[0.16em] text-[color:var(--muted)]">Carro</dt>

@@ -7,7 +7,11 @@ function onlyDigits(value: string): string {
   return value.replace(/\D+/g, "");
 }
 
-function formatTaxId(value: string): string {
+function formatIdentifier(value: string): string {
+  if (value.includes("@")) {
+    return value.trim();
+  }
+
   const digits = onlyDigits(value).slice(0, 14);
   if (digits.length <= 11) {
     return digits
@@ -23,17 +27,10 @@ function formatTaxId(value: string): string {
     .replace(/^(\d{2})\.(\d{3})\.(\d{3})\/(\d{4})(\d)/, "$1.$2.$3/$4-$5");
 }
 
-function formatPhone(value: string): string {
-  const digits = onlyDigits(value).slice(0, 11);
-  return digits
-    .replace(/^(\d{2})(\d)/, "$1 $2")
-    .replace(/^(\d{2}) (\d{5})(\d)/, "$1 $2-$3");
-}
-
 export function LoginForm() {
   const router = useRouter();
-  const [taxId, setTaxId] = useState("");
-  const [phone, setPhone] = useState("");
+  const [identifier, setIdentifier] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -46,7 +43,7 @@ export function LoginForm() {
       const response = await fetch("/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ tax_id: taxId, phone }),
+        body: JSON.stringify({ identifier, password }),
       });
       const payload = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
 
@@ -67,26 +64,25 @@ export function LoginForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <label className="block">
-        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">CPF/CNPJ</span>
+        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">E-mail ou CPF/CNPJ</span>
         <input
-          value={taxId}
-          onChange={(event) => setTaxId(formatTaxId(event.target.value))}
-          inputMode="numeric"
+          value={identifier}
+          onChange={(event) => setIdentifier(formatIdentifier(event.target.value))}
           autoComplete="username"
-          placeholder="000.000.000-00"
+          placeholder="cliente@email.com ou 000.000.000-00"
           className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
           required
         />
       </label>
 
       <label className="block">
-        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Telefone</span>
+        <span className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Senha</span>
         <input
-          value={phone}
-          onChange={(event) => setPhone(formatPhone(event.target.value))}
-          inputMode="numeric"
-          autoComplete="tel"
-          placeholder="75 99999-9999"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          autoComplete="current-password"
+          placeholder="Sua senha"
           className="mt-2 w-full rounded-2xl border border-[color:var(--line)] bg-white/85 px-4 py-4 text-base font-bold outline-none transition focus:border-[color:var(--brand)] focus:ring-4 focus:ring-orange-100"
           required
         />

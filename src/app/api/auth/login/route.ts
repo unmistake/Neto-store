@@ -14,12 +14,12 @@ function erpApiBaseUrl(): string {
 
 export async function POST(request: Request) {
   const body = await request.json().catch(() => null);
-  const taxId = String(body?.tax_id || "").trim();
-  const phone = String(body?.phone || "").trim();
+  const identifier = String(body?.identifier || "").trim();
+  const password = String(body?.password || "");
   const token = process.env.ERP_API_TOKEN;
 
-  if (!taxId || !phone) {
-    return NextResponse.json({ ok: false, error: "Informe CPF/CNPJ e telefone." }, { status: 422 });
+  if (!identifier || !password) {
+    return NextResponse.json({ ok: false, error: "Informe e-mail/CPF e senha." }, { status: 422 });
   }
 
   if (!token) {
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ tax_id: taxId, phone }),
+    body: JSON.stringify({ identifier, password }),
     cache: "no-store",
   });
 
@@ -40,7 +40,7 @@ export async function POST(request: Request) {
 
   if (!response.ok || !payload.ok || !payload.data) {
     return NextResponse.json(
-      { ok: false, error: payload.error || "Nao encontramos um cliente com esses dados." },
+      { ok: false, error: payload.error || "E-mail/CPF ou senha invalidos." },
       { status: response.status || 401 },
     );
   }
