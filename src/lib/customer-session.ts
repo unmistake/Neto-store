@@ -1,13 +1,11 @@
-import { createHmac, timingSafeEqual } from "crypto";
-import { cookies } from "next/headers";
-
-export const CUSTOMER_SESSION_COOKIE = "nr_customer_session";
+import { createClient } from "@/lib/supabase/server";
 
 export type CustomerSession = {
   id: number;
+  auth_user_id: string;
   first_name: string;
   last_name: string;
-  email?: string | null;
+  email: string;
   full_name: string;
   phone_masked: string;
   tax_id_masked: string;
@@ -15,49 +13,56 @@ export type CustomerSession = {
   created_at?: string | null;
 };
 
-function sessionSecret(): string {
-  return process.env.CUSTOMER_SESSION_SECRET || "dev-customer-session-secret-change-me";
-}
+type CustomerProfile = {
+  id: string;
+  erp_customer_id: number | null;
+  first_name: string;
+  last_name: string;
+  email: string;
+  phone_masked: string;
+  tax_id_masked: string;
+  car: string | null;
+  created_at: string;
+};
 
-function base64UrlEncode(value: string): string {
-  return Buffer.from(value, "utf8").toString("base64url");
-}
-
-function base64UrlDecode(value: string): string {
-  return Buffer.from(value, "base64url").toString("utf8");
-}
-
-function signPayload(payload: string): string {
-  return createHmac("sha256", sessionSecret()).update(payload).digest("base64url");
-}
-
-export function createCustomerSession(customer: CustomerSession): string {
-  const payload = base64UrlEncode(JSON.stringify(customer));
-  return `${payload}.${signPayload(payload)}`;
-}
-
-export function verifyCustomerSession(token?: string): CustomerSession | null {
-  if (!token || !token.includes(".")) {
+export function profileToCustomerSession(profile: CustomerProfile): CustomerSession | null {
+  if (!profile.erp_customer_id) {
     return null;
   }
 
-  const [payload, signature] = token.split(".");
-  const expected = signPayload(payload);
-  const providedBuffer = Buffer.from(signature);
-  const expectedBuffer = Buffer.from(expected);
-
-  if (providedBuffer.length !== expectedBuffer.length || !timingSafeEqual(providedBuffer, expectedBuffer)) {
-    return null;
-  }
-
-  try {
-    return JSON.parse(base64UrlDecode(payload)) as CustomerSession;
-  } catch {
-    return null;
-  }
+  return {
+    id: Number(profile.erp_customer_id),
+    auth_user_id: profile.id,
+    first_name: profile.first_name,
+    last_name: profile.last_name,
+    email: profile.email,
+    full_name: `${profile.first_name} ${profile.last_name}`.trim(),
+    phone_masked: profile.phone_masked,
+    tax_id_masked: profile.tax_id_masked,
+    car: profile.car,
+    created_at: profile.created_at,
+  };
 }
 
 export async function getCustomerSession(): Promise<CustomerSession | null> {
-  const cookieStore = await cookies();
-  return verifyCustomerSession(cookieStore.get(CUSTOMER_SESSION_COOKIE)?.value);
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      return null;
+    }
+
+    const { data: profile } = await supabase
+      .from("customer_profiles")
+      .select("id, erp_customer_id, first_name, last_name, email, phone_masked, tax_id_masked, car, created_at")
+      .eq("id", user.id)
+      .maybeSingle<CustomerProfile>();
+
+    return profile ? profileToCustomerSession(profile) : null;
+  } catch {
+    return null;
+  }
 }

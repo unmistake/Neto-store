@@ -140,14 +140,18 @@ export function RegisterForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      const payload = (await response.json().catch(() => null)) as { ok?: boolean; error?: string } | null;
+      const payload = (await response.json().catch(() => null)) as {
+        ok?: boolean;
+        error?: string;
+        requires_login?: boolean;
+      } | null;
 
       if (!response.ok || !payload?.ok) {
         setError(payload?.error || "Nao foi possivel criar sua conta.");
         return;
       }
 
-      router.push("/minha-conta");
+      router.push(payload.requires_login ? "/login" : "/minha-conta");
       router.refresh();
     } catch {
       setError("Falha de conexao. Tente novamente em instantes.");

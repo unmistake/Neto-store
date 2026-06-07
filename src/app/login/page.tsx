@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 export const metadata = {
   title: "Login do cliente | Neto Rodas",
 };
+export const dynamic = "force-dynamic";
 
 export default async function LoginPage() {
   const customer = await getCustomerSession();
@@ -28,7 +29,7 @@ export default async function LoginPage() {
           </p>
           <div className="mt-10 rounded-[2rem] border border-white/15 bg-white/10 p-5">
             <p className="text-sm font-bold text-stone-200">
-              Por seguranca, a area do cliente agora usa senha. Se voce ainda nao criou uma senha, use a pagina de cadastro.
+              As contas agora usam autenticacao segura pelo Supabase. Se voce tinha somente cadastro no CRM, crie seu acesso uma vez.
             </p>
           </div>
         </aside>

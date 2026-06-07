@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 export const metadata = {
   title: "Minha conta | Neto Rodas",
 };
+export const dynamic = "force-dynamic";
 
 export default async function MinhaContaPage() {
   const customer = await getCustomerSession();
