@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { SiteFooter } from "@/components/SiteFooter";
 import "./globals.css";
 
 const googleTagManagerId = "GTM-P72Z4HTB";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.netorodas.com.br"),
   title: "Neto Rodas | Pneus e Rodas",
   description: "Loja online da Neto Rodas com pneus e rodas selecionados do estoque real.",
 };
@@ -33,6 +35,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           />
         </noscript>
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

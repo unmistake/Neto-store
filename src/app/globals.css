@@ -47,6 +47,26 @@ h1, h2, h3, .display-font {
   box-shadow: 0 24px 60px rgba(52, 43, 29, 0.14);
 }
 
+.legal-content {
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.legal-content h2 {
+  margin-top: 2rem;
+  color: var(--ink);
+  font-size: 1.5rem;
+  font-weight: 800;
+}
+
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+
+.legal-content p {
+  margin-top: 0.75rem;
+}
+
 .reveal {
   animation: reveal 0.65s ease both;
 }

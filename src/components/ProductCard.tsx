@@ -4,19 +4,23 @@ import { formatMoney, productMeasure, StoreProduct, whatsappLink } from "@/lib/p
 import { VisualizeWheelButton } from "@/components/VisualizeWheelButton";
 
 export function ProductCard({ product, index }: { product: StoreProduct; index: number }) {
+  const cars = Array.isArray(product.cars) ? product.cars : [];
+
   return (
     <article
       className="reveal group overflow-hidden rounded-[2rem] border border-[color:var(--line)] bg-[color:var(--card)] card-shadow"
       style={{ animationDelay: `${Math.min(index * 45, 360)}ms` }}
     >
       <div className="relative aspect-[4/3] overflow-hidden bg-stone-200">
-        <Image
-          src={product.image_url}
-          alt={product.name}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          className="object-cover transition duration-500 group-hover:scale-105"
-        />
+        <Link href={`/produto/${product.id}`} aria-label={`Ver detalhes de ${product.name}`}>
+          <Image
+            src={product.image_url}
+            alt={product.name}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="object-cover transition duration-500 group-hover:scale-105"
+          />
+        </Link>
         <div className="absolute left-4 top-4 flex flex-wrap gap-2">
           <span className="rounded-full bg-black/75 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-white backdrop-blur">
             {product.category === "pneu" ? "Pneu" : "Roda"}
@@ -32,13 +36,17 @@ export function ProductCard({ product, index }: { product: StoreProduct; index: 
           <p className="text-xs font-bold uppercase tracking-[0.22em] text-[color:var(--brand)]">
             {[product.brand, product.model].filter(Boolean).join(" / ") || "Neto Rodas"}
           </p>
-          <h3 className="mt-2 min-h-16 text-2xl font-extrabold leading-tight display-font">{product.name}</h3>
+          <h3 className="mt-2 min-h-16 text-2xl font-extrabold leading-tight display-font">
+            <Link href={`/produto/${product.id}`} className="transition hover:text-[color:var(--brand)]">
+              {product.name}
+            </Link>
+          </h3>
           <p className="mt-1 text-sm font-semibold text-[color:var(--muted)]">{productMeasure(product)}</p>
         </div>
 
-        {product.cars.length > 0 ? (
+        {cars.length > 0 ? (
           <div className="flex flex-wrap gap-2">
-            {product.cars.slice(0, 3).map((car) => (
+            {cars.slice(0, 3).map((car) => (
               <span key={car} className="rounded-full border border-[color:var(--line)] px-3 py-1 text-xs font-semibold text-[color:var(--muted)]">
                 {car}
               </span>
@@ -56,6 +64,12 @@ export function ProductCard({ product, index }: { product: StoreProduct; index: 
           </p>
         </div>
 
+        <Link
+          href={`/produto/${product.id}`}
+          className="block rounded-2xl border border-[color:var(--line)] px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] transition hover:bg-white"
+        >
+          Ver detalhes
+        </Link>
         <Link
           href={whatsappLink(product)}
           target="_blank"
