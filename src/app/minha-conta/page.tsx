@@ -74,22 +74,15 @@ export default async function MinhaContaPage() {
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Em breve</p>
               <h2 className="display-font mt-3 text-3xl font-black">Favoritos</h2>
               <p className="mt-3 text-sm font-semibold text-[color:var(--muted)]">
-                Espaço reservado para salvar pneus e rodas de interesse antes de chamar a equipe no WhatsApp.
+                Espaço reservado para salvar pneus e rodas de interesse e adicioná-los ao carrinho.
               </p>
             </article>
             <article className="rounded-[2rem] border border-[color:var(--line)] bg-white/70 p-6 card-shadow sm:col-span-2">
               <p className="text-xs font-black uppercase tracking-[0.22em] text-[color:var(--muted)]">Atendimento</p>
               <h2 className="display-font mt-3 text-3xl font-black">Precisa alterar seus dados?</h2>
               <p className="mt-3 text-sm font-semibold text-[color:var(--muted)]">
-                Por enquanto, alterações cadastrais continuam sendo feitas pela equipe da loja para manter o CRM consistente.
+                Por enquanto, alterações cadastrais continuam sendo feitas pela equipe da loja. Entre em contato pelo telefone (75) 99166-5469.
               </p>
-              <Link
-                href="https://wa.me/5575991665469?text=Ol%C3%A1%2C%20quero%20atualizar%20meu%20cadastro%20na%20Neto%20Rodas."
-                target="_blank"
-                className="mt-5 inline-flex rounded-2xl bg-[color:var(--brand)] px-5 py-4 text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[color:var(--brand-dark)]"
-              >
-                Falar no WhatsApp
-              </Link>
             </article>
           </section>
         </section>

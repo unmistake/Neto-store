@@ -145,9 +145,3 @@ export function productDescription(product: StoreProduct): string {
 
   return `${category} ${condition}${identity ? ` ${identity}` : ""}${measure ? `, ${measure}` : ""}.${compatibility}`;
 }
-
-export function whatsappLink(product: StoreProduct): string {
-  const phone = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "5575991665469";
-  const message = `Olá! Tenho interesse no produto: ${product.name} - ${productMeasure(product)} (${formatMoney(product.price)}). Pode me passar mais informações?`;
-  return `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
-}

@@ -25,7 +25,7 @@ export default function PrivacyPage() {
       <p>Não comercializamos dados pessoais. O compartilhamento ocorre quando necessário para operar a loja, atender obrigações legais ou proteger direitos.</p>
 
       <h2>Seus direitos</h2>
-      <p>Você pode solicitar confirmação, acesso, correção ou outras providências previstas na legislação aplicável pelo WhatsApp (75) 99166-5469.</p>
+      <p>Você pode solicitar confirmação, acesso, correção ou outras providências previstas na legislação aplicável pelo telefone (75) 99166-5469.</p>
     </InformationPage>
   );
 }

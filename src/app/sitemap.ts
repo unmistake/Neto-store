@@ -12,6 +12,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     "/trocas-e-devolucoes",
     "/privacidade",
     "/termos",
+    "/carrinho",
     "/login",
     "/criar-conta",
   ];

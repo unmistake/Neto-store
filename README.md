@@ -13,7 +13,6 @@ npm run dev
 ## Variaveis da Vercel
 
 - `NEXT_PUBLIC_ERP_API_URL`: endpoint publico do ERP. Exemplo: `https://erp-netorodas.online/api/public/products`
-- `NEXT_PUBLIC_WHATSAPP_NUMBER`: WhatsApp com codigo do pais e DDD. Exemplo: `5575991665469`
 - `ERP_API_BASE_URL`: endpoint protegido do ERP. Exemplo: `https://erp-netorodas.online/api`
 - `ERP_API_TOKEN`: token da API do ERP, usado somente no servidor da loja para sincronizar o cliente com o CRM.
 - `NEXT_PUBLIC_SUPABASE_URL`: URL do projeto Supabase.

@@ -1,4 +1,5 @@
-import { formatMoney, getProduct, productDescription, productMeasure, whatsappLink } from "@/lib/products";
+import { AddToCartButton } from "@/components/AddToCartButton";
+import { formatMoney, getProduct, productDescription, productMeasure } from "@/lib/products";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -122,13 +123,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
               <p className="mt-2 text-sm text-[color:var(--muted)]">Frete e prazo são informados antes da confirmação do pedido.</p>
             </div>
 
-            <Link
-              href={whatsappLink(product)}
-              target="_blank"
-              className="mt-6 rounded-2xl bg-[color:var(--brand)] px-6 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[color:var(--brand-dark)]"
-            >
-              Comprar pelo WhatsApp
-            </Link>
+            <AddToCartButton product={product} />
           </div>
         </article>
       </section>

@@ -16,7 +16,7 @@ export default function ReturnsPage() {
       <p>Em compras concluídas fora do estabelecimento comercial, o consumidor pode solicitar o cancelamento em até 7 dias corridos após o recebimento, sem necessidade de justificativa e sem custos adicionais, conforme o artigo 49 do Código de Defesa do Consumidor.</p>
 
       <h2>Como solicitar</h2>
-      <p>Entre em contato pelo WhatsApp (75) 99166-5469, informe o número do pedido ou nota fiscal e envie fotos do produto. A equipe fornecerá as orientações de coleta ou postagem.</p>
+      <p>Entre em contato pelo telefone (75) 99166-5469 e informe o número do pedido ou nota fiscal. A equipe fornecerá as orientações de coleta ou postagem.</p>
 
       <h2>Condições de devolução</h2>
       <p>O produto deve ser preservado e acompanhado de seus acessórios e documentos. A análise não limita direitos legais e não será exigida embalagem inviolada para o exercício regular do direito de arrependimento.</p>

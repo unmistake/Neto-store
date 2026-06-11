@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatMoney, productMeasure, StoreProduct, whatsappLink } from "@/lib/products";
+import { formatMoney, productMeasure, StoreProduct } from "@/lib/products";
 import { VisualizeWheelButton } from "@/components/VisualizeWheelButton";
 
 export function ProductCard({ product, index }: { product: StoreProduct; index: number }) {
@@ -69,13 +69,6 @@ export function ProductCard({ product, index }: { product: StoreProduct; index: 
           className="block rounded-2xl border border-[color:var(--line)] px-5 py-3 text-center text-sm font-black uppercase tracking-[0.16em] transition hover:bg-white"
         >
           Ver detalhes
-        </Link>
-        <Link
-          href={whatsappLink(product)}
-          target="_blank"
-          className="block rounded-2xl bg-[color:var(--brand)] px-5 py-4 text-center text-sm font-black uppercase tracking-[0.16em] text-white transition hover:bg-[color:var(--brand-dark)]"
-        >
-          Comprar pelo WhatsApp
         </Link>
         {product.category === "roda" ? <VisualizeWheelButton product={product} /> : null}
       </div>

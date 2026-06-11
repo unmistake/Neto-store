@@ -51,7 +51,7 @@ export default async function Home({ searchParams }: PageProps) {
                 Pneus e rodas com estoque real da loja.
               </h1>
               <p className="mt-6 max-w-2xl text-lg text-stone-200">
-                Escolha o produto, chame no WhatsApp e finalize com nossa equipe. Esta vitrine mostra apenas itens com foto cadastrada no ERP.
+                Escolha seus produtos e monte o pedido diretamente pelo carrinho. Esta vitrine mostra apenas itens com foto cadastrada no ERP.
               </p>
             </div>
             <div className="relative flex items-end justify-start md:justify-end">

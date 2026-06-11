@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { CartProvider } from "@/components/CartProvider";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
 const googleTagManagerId = "GTM-P72Z4HTB";
@@ -34,8 +36,11 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
             style={{ display: "none", visibility: "hidden" }}
           />
         </noscript>
-        {children}
-        <SiteFooter />
+        <CartProvider>
+          <SiteHeader />
+          {children}
+          <SiteFooter />
+        </CartProvider>
       </body>
     </html>
   );
