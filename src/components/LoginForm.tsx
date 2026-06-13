@@ -1,6 +1,6 @@
 "use client";
 
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useState } from "react";
 
 function onlyDigits(value: string): string {
@@ -29,6 +29,7 @@ function formatIdentifier(value: string): string {
 
 export function LoginForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [identifier, setIdentifier] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -52,7 +53,8 @@ export function LoginForm() {
         return;
       }
 
-      router.push("/minha-conta");
+      const nextPath = searchParams.get("next");
+      router.push(nextPath?.startsWith("/") ? nextPath : "/minha-conta");
       router.refresh();
     } catch {
       setError("Falha de conexao. Tente novamente em instantes.");

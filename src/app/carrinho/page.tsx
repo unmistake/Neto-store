@@ -127,13 +127,12 @@ export default function CartPage() {
               <p className="mt-5 text-sm leading-6 text-stone-300">
                 Frete, endereço de entrega e pagamento serão adicionados na próxima etapa do checkout.
               </p>
-              <button
-                type="button"
-                disabled
-                className="mt-6 w-full rounded-2xl bg-white/15 px-5 py-4 text-sm font-black uppercase tracking-[0.14em] text-white/70"
+              <Link
+                href="/checkout"
+                className="mt-6 block w-full rounded-2xl bg-[color:var(--brand)] px-5 py-4 text-center text-sm font-black uppercase tracking-[0.14em] text-white transition hover:bg-[color:var(--brand-dark)]"
               >
-                Finalização em breve
-              </button>
+                Ir para o checkout
+              </Link>
               <Link
                 href="/"
                 className="mt-3 block text-center text-xs font-black uppercase tracking-[0.14em] text-orange-200"
